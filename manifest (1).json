@@ -1,0 +1,17 @@
+{
+  "name": "EMS Jayakarta Roleplay",
+  "short_name": "EMS Jayakarta",
+  "description": "Website Resmi Emergency Medical Service Jayakarta Roleplay Indonesia",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f4f7f6",
+  "theme_color": "#0056b3",
+  "icons": [
+    {
+      "src": "https://tareqwavlgqoexxffuuc.supabase.co/storage/v1/object/sign/Logo_Website/Logo_Website/file_000000000cb87209823fb034e5ac907f.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kNWIxNTEyZS03YTE5LTQzY2UtYWUxNC00ZmRkNzMyZmIyODMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMb2dvX1dlYnNpdGUvTG9nb19XZWJzaXRlL2ZpbGVfMDAwMDAwMDAwY2I4NzIwOTgyM2ZiMDM0ZTVhYzkwN2YucG5nIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4MzgxOTg2NiwiZXhwIjoxODE1MzU1ODY2fQ.iymiWzQXVP3b4IOPmZSj85764licViK1YbONGbXqMPk",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
+
