@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMS Jayakarta Roleplay Indonesia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <!-- FontAwesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 untuk Popup Admin -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Firebase SDK (v8) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="navbar-left">
+            <img src="https://tareqwavlgqoexxffuuc.supabase.co/storage/v1/object/sign/Logo_Website/Logo_Website/1000166367-removebg-preview.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kNWIxNTEyZS03YTE5LTQzY2UtYWUxNC00ZmRkNzMyZmIyODMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMb2dvX1dlYnNpdGUvTG9nb19XZWJzaXRlLzEwMDAxNjYzNjctcmVtb3ZlYmctcHJldmlldy5wbmciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzgzODMxODMzLCJleHAiOjE4MTUzNjc4MzN9.2-W6pGzLJYMkpReBRM3Ie52R8RFWHsmRa6Wo9oUEDN0" alt="Logo EMS" class="logo">
+            <div class="brand-text">
+                <h1>EMS Jayakarta Roleplay Indonesia</h1>
+                <p>Emergency Medical Service</p>
+            </div>
+        </div>
+        <div class="navbar-right">
+            <button id="menu-toggle" class="menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Sidebar / Drawer Menu Garis Tiga -->
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3>Menu Utama</h3>
+            <button id="close-sidebar" class="close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showPage('beranda')"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="#" onclick="showPage('berita')"><i class="fas fa-newspaper"></i> Berita</a></li>
+            <li><a href="#" onclick="showPage('pejabat')"><i class="fas fa-user-tie"></i> Tampilan Pejabat EMS</a></li>
+            <li><a href="#" onclick="showPage('gallery')"><i class="fas fa-images"></i> Gallery EMS</a></li>
+            <li><a href="#" onclick="showPage('kegiatan')"><i class="fas fa-camera"></i> Foto Kegiatan</a></li>
+            <li><a href="#" onclick="showPage('anggota')"><i class="fas fa-users"></i> Daftar Anggota</a></li>
+            <li><a href="#" onclick="showPage('settings')"><i class="fas fa-cog"></i> Settings <small>(Coming soon)</small></a></li>
+            <li class="admin-link"><a href="#" onclick="showPage('admin')"><i class="fas fa-cogs"></i> Administrator</a></li>
+        </ul>
+    </nav>
+    <div id="sidebar-overlay" class="overlay"></div>
+
+    <!-- Main Content Area -->
+    <main class="container">
+        
+        <!-- BERANDA -->
+        <section id="page-beranda" class="page-section active">
+            <h2 class="section-title">Selamat Datang di EMS Jayakarta</h2>
+            <div class="slideshow-container" id="slideshow-container">
+                <!-- Slide Otomatis di-inject via JS -->
+            </div>
+            <div class="dot-container" id="dot-container"></div>
+            <div class="welcome-text">
+                <p>Kami adalah layanan medis darurat resmi di Jayakarta Roleplay. Berdedikasi untuk menyelamatkan nyawa dan melayani masyarakat.</p>
+            </div>
+        </section>
+
+        <!-- BERITA -->
+        <section id="page-berita" class="page-section">
+            <h2 class="section-title">Berita Terkini</h2>
+            <div class="grid-container" id="berita-container"></div>
+        </section>
+
+        <!-- PEJABAT -->
+        <section id="page-pejabat" class="page-section">
+            <h2 class="section-title">Pejabat EMS Jayakarta</h2>
+            <div class="grid-container" id="pejabat-container"></div>
+        </section>
+
+        <!-- GALLERY -->
+        <section id="page-gallery" class="page-section">
+            <h2 class="section-title">Gallery EMS</h2>
+            <div class="grid-container" id="gallery-container"></div>
+        </section>
+
+        <!-- KEGIATAN -->
+        <section id="page-kegiatan" class="page-section">
+            <h2 class="section-title">Foto Kegiatan</h2>
+            <div class="grid-container" id="kegiatan-container"></div>
+        </section>
+
+        <!-- ANGGOTA -->
+        <section id="page-anggota" class="page-section">
+            <h2 class="section-title">Daftar Anggota</h2>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Jabatan / Rank</th>
+                        </tr>
+                    </thead>
+                    <tbody id="anggota-container"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="page-settings" class="page-section">
+            <div class="coming-soon">
+                <i class="fas fa-tools fa-4x"></i>
+                <h2>Settings</h2>
+                <p>Fitur ini akan segera hadir (Coming Soon).</p>
+            </div>
+        </section>
+
+        <!-- ADMINISTRATOR PANEL -->
+        <section id="page-admin" class="page-section">
+            <h2 class="section-title">Panel Administrator</h2>
+            
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="switchAdminTab('slides')">Slide Foto</button>
+                <button class="tab-btn" onclick="switchAdminTab('berita')">Berita</button>
+                <button class="tab-btn" onclick="switchAdminTab('pejabat')">Pejabat</button>
+                <button class="tab-btn" onclick="switchAdminTab('gallery')">Gallery</button>
+                <button class="tab-btn" onclick="switchAdminTab('kegiatan')">Kegiatan</button>
+                <button class="tab-btn" onclick="switchAdminTab('anggota')">Anggota</button>
+            </div>
+
+            <div class="admin-content">
+                <button class="btn btn-primary" id="btn-add-data" onclick="openAddModal()"><i class="fas fa-plus"></i> Tambah Data</button>
+                
+                <div class="table-responsive" style="margin-top: 15px;">
+                    <table class="data-table admin-table">
+                        <thead>
+                            <tr id="admin-table-head">
+                                <!-- Headers injected via JS -->
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body">
+                            <!-- Data CRUD injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 EMS JAYAKARTA - ALL RIGHT RESERVED</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker Active!', reg))
+                    .catch(err => console.log('Service Worker Failed', err));
+            });
+        }
+    </script>
+</body>
+</html>
